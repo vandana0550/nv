@@ -1,6 +1,6 @@
 // ========== CONFIGURATION ==========
 // ⚠️ IMPORTANT: Change this date to your actual relationship start date!
-const RELATIONSHIP_START_DATE = new Date('2023-02-14T00:00:00'); // Format: YYYY-MM-DDTHH:MM:SS
+const RELATIONSHIP_START_DATE = new Date('2024-05-05T00:42:54'); // Format: YYYY-MM-DDTHH:MM:SS
 
 // ========== FLOATING HEARTS ANIMATION ==========
 function createFloatingHearts() {
@@ -26,7 +26,7 @@ function createFloatingHearts() {
 
 // ========== CARD NAVIGATION SYSTEM ==========
 let currentCard = 0;
-const cards = ['heroSection', 'card1', 'card2', 'card3', 'card4'];
+const cards = ['heroSection', 'card1', 'card2', 'card3', 'card4', 'card5'];
 
 function showCard(cardIndex) {
     // Hide all cards
@@ -34,7 +34,7 @@ function showCard(cardIndex) {
         const element = document.getElementById(cardId);
         if (index === cardIndex) {
             element.classList.add('active');
-            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
             element.classList.remove('active');
         }
@@ -63,6 +63,12 @@ document.getElementById('nextBtn3').addEventListener('click', () => {
     showCard(currentCard);
 });
 
+// Add new button event listener
+document.getElementById('nextBtn4').addEventListener('click', () => {
+    currentCard = 5;
+    showCard(currentCard);
+});
+
 // ========== PROPOSAL BUTTONS ==========
 document.getElementById('yesBtn').addEventListener('click', () => {
     document.getElementById('finalMessage').classList.add('show');
@@ -86,7 +92,7 @@ document.getElementById('noBtn').addEventListener('click', () => {
     noBtn.style.top = randomY + 'px';
     
     // Change button text
-    const texts = ['Are you sure? 🥺', 'Think again... 💔', 'Please? 🙏', 'One more chance? 💕'];
+    const texts = ['Batau abhi 😒', 'Yes pe click karo chup chap 💔', 'Please? 🙏', 'Abhi bhi moka hai maan jao 💕'];
     noBtn.textContent = texts[Math.floor(Math.random() * texts.length)];
 });
 
@@ -106,37 +112,51 @@ function startCountdown() {
     countdownInterval = setInterval(updateCountdown, 1000);
 }
 
+
 function updateCountdown() {
     const now = new Date();
     const diff = now - RELATIONSHIP_START_DATE;
     
     // Calculate time components
-    const seconds = Math.floor(diff / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
+    const totalSeconds = Math.floor(diff / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+    const totalDays = Math.floor(totalHours / 24);
     
     // Calculate years and months
     let years = now.getFullYear() - RELATIONSHIP_START_DATE.getFullYear();
     let months = now.getMonth() - RELATIONSHIP_START_DATE.getMonth();
+    let days = now.getDate() - RELATIONSHIP_START_DATE.getDate();
     
+    // Adjust for negative days
+    if (days < 0) {
+        months--;
+        // Get days in previous month
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+    }
+    
+    // Adjust for negative months
     if (months < 0) {
         years--;
         months += 12;
     }
     
-    // Calculate remaining days after years and months
-    const startOfCurrentMonth = new Date(now.getFullYear(), now.getMonth(), RELATIONSHIP_START_DATE.getDate());
-    const daysInCurrentPeriod = Math.floor((now - startOfCurrentMonth) / (1000 * 60 * 60 * 24));
+    // Calculate current time components
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
     
-    // Update DOM elements
+    // Update DOM elements with zero-padding for single digits
     document.getElementById('years').textContent = years;
     document.getElementById('months').textContent = months;
-    document.getElementById('days').textContent = daysInCurrentPeriod;
-    document.getElementById('hours').textContent = now.getHours();
-    document.getElementById('minutes').textContent = now.getMinutes();
-    document.getElementById('seconds').textContent = now.getSeconds();
+    document.getElementById('days').textContent = days;
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
 }
+
+
 
 // ========== CONFETTI EFFECT ==========
 function createConfetti() {
