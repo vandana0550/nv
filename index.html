@@ -1,149 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For My vandana ❤️</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Floating Hearts Background -->
+    <div class="hearts-container" id="heartsContainer"></div>
 
-<!-- Animated Background Elements -->
-<div class="hearts-bg"></div>
-<div class="sparkles"></div>
-<div class="rose-petals"></div>
+    <!-- Hero Section -->
+    <section class="hero-section active" id="heroSection">
+        <div class="hero-content">
+            <h1 class="hero-title">For Someone Special ❤️</h1>
+            <p class="hero-subtitle">Tumhare liye kuch khaas hai...</p>
+            <button class="btn-primary" id="startBtn">Click to Begin ❤️</button>
+        </div>
+    </section>
 
-<!-- Music Toggle -->
-<button class="music-toggle" onclick="toggleMusic()" title="Toggle Music">
-  🎵
-</button>
+    <!-- Card 1: First Message -->
+    <section class="card-section" id="card1">
+        <div class="card">
+            <div class="card-content">
+                <h2 class="card-title">Jab Se Tum Aayi Ho...</h2>
+                <p class="card-text">
+                    Jab se tum meri life me aayi ho, everything feels special. ✨<br><br>
+                    Har pal tumhare saath bitana, har smile tumhari dekhna, it's like magic. 
+                    You are not just my love, <strong>tum meri duniya ho</strong>. 💖
+                </p>
+                <div class="image-gallery">
+                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400&h=300&fit=crop" alt="Love Memory 1" class="gallery-img">
+                </div>
+                <button class="btn-secondary" id="nextBtn1">Continue... 💕</button>
+            </div>
+        </div>
+    </section>
 
-<!-- Progress Indicator -->
-<div class="progress-indicator">
-  <div class="progress-dot active" data-step="0"></div>
-  <div class="progress-dot" data-step="1"></div>
-  <div class="progress-dot" data-step="2"></div>
-  <div class="progress-dot" data-step="3"></div>
-  <div class="progress-dot" data-step="4"></div>
-</div>
+    <!-- Card 2: Second Message -->
+    <section class="card-section" id="card2">
+        <div class="card">
+            <div class="card-content">
+                <h2 class="card-title">Tumhare Bina...</h2>
+                <p class="card-text">
+                    Tumhare bina ek pal bhi incomplete lagta hai. 🌙<br><br>
+                    You make my darkest days bright, meri har khushi ka reason tum ho.
+                    Tumhari smile makes everything worth it. I'm so lucky to have you in my life. 💫
+                </p>
+                <div class="image-gallery">
+                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&h=300&fit=crop" alt="Love Memory 2" class="gallery-img">
+                    <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=400&h=300&fit=crop" alt="Love Memory 3" class="gallery-img">
+                </div>
+                <button class="btn-secondary" id="nextBtn2">Show Me More... 🌟</button>
+            </div>
+        </div>
+    </section>
 
-<!-- Hero Section with Typing Animation -->
-<section class="hero section-step" data-step="0">
-  <div class="hero-content">
-    <div class="name-reveal">
-      <h1 class="glowing-text">Happy Valentine's Day</h1>
-      <h2 class="vandana-name">vandana ❤️</h2>
-    </div>
-    <p class="subtitle typing-text">Ye choti si website sirf meri jaan ke liye...</p>
-    <button class="cta-button" onclick="nextSection()">
-      <span>✨ Start the Journey ✨</span>
-    </button>
-  </div>
-</section>
+    <!-- Card 3: Countdown Timer -->
+    <section class="card-section" id="card3">
+        <div class="card">
+            <div class="card-content">
+                <h2 class="card-title">Hamara Safar ❤️</h2>
+                <p class="card-text">
+                    Jab se hamara safar shuru hua hai...<br>
+                    Here's how long we've been creating beautiful memories together:
+                </p>
+                
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="years">0</div>
+                        <div class="countdown-label">Years</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="months">0</div>
+                        <div class="countdown-label">Months</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="days">0</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="hours">0</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="minutes">0</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="seconds">0</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
 
-<!-- Love Messages Carousel -->
-<section class="messages-carousel section-step hidden" data-step="1">
-  <div class="carousel-container">
-    <button class="carousel-btn prev" onclick="changeMessage(-1)">‹</button>
-    <div class="message-card glass-card">
-      <div class="heart-icon pulse">💕</div>
-      <h2 class="nickname">Mera Baccha</h2>
-      <p class="love-message" id="carouselMessage">
-        vandana, tum meri life ki sabse beautiful feeling ho.
-      </p>
-    </div>
-    <button class="carousel-btn next" onclick="changeMessage(1)">›</button>
-  </div>
-  <div class="carousel-dots" id="carouselDots"></div>
-  <button class="continue-btn" onclick="nextSection()">
-    Continue ➜
-  </button>
-</section>
+                <div class="image-gallery">
+                    <img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=400&h=300&fit=crop" alt="Love Memory 4" class="gallery-img">
+                    <img src="https://images.unsplash.com/photo-1502139214982-d0ad755818d8?w=400&h=300&fit=crop" alt="Love Memory 5" class="gallery-img">
+                </div>
 
-<!-- Love Letter Section -->
-<section class="love-letter section-step hidden" data-step="2">
-  <div class="letter-card glass-card">
-    <div class="letter-header">
-      <span class="envelope-icon">💌</span>
-      <h2>A Message For You</h2>
-    </div>
-    <div class="letter-content">
-      <p class="letter-text">
-        vandana, main perfect nahi hu lekin tumhare saath har din better banna chahta hu.
-        <br><br>
-        Tum meri safe place ho, meri jaan ho aur mera forever surprise ho.
-        <br><br>
-        <span class="signature">- Always Yours 💝</span>
-      </p>
-    </div>
-  </div>
-  <button class="continue-btn" onclick="nextSection()">
-    Continue ➜
-  </button>
-</section>
+                <button class="btn-secondary" id="nextBtn3">One More Thing... 💝</button>
+            </div>
+        </div>
+    </section>
 
-<!-- Countdown Timer -->
-<section class="countdown-section section-step hidden" data-step="3">
-  <div class="countdown-card glass-card">
-    <h3>Time Since We've Been Together 💑</h3>
-    <div class="countdown-display">
-      <div class="time-unit">
-        <span class="time-value" id="days">0</span>
-        <span class="time-label">Days</span>
-      </div>
-      <div class="time-unit">
-        <span class="time-value" id="hours">0</span>
-        <span class="time-label">Hours</span>
-      </div>
-      <div class="time-unit">
-        <span class="time-value" id="minutes">0</span>
-        <span class="time-label">Minutes</span>
-      </div>
-      <div class="time-unit">
-        <span class="time-value" id="seconds">0</span>
-        <span class="time-label">Seconds</span>
-      </div>
-    </div>
-  </div>
-  <button class="continue-btn" onclick="nextSection()">
-    See the Surprise ➜
-  </button>
-</section>
+    <!-- Card 4: Final Proposal -->
+    <section class="card-section" id="card4">
+        <div class="card">
+            <div class="card-content">
+                <h2 class="card-title proposal-title">Will You Be Mine Forever? 💍</h2>
+                <p class="card-text">
+                    Tumhare saath har din Valentine's Day jaisa lagta hai. 🌹<br><br>
+                    But today is special. Aaj main tumse ek sawal puchna chahta/chahti hoon...<br><br>
+                    <strong class="proposal-question">Will you be my Valentine? ❤️</strong>
+                </p>
+                
+                <div class="proposal-buttons">
+                    <button class="btn-yes" id="yesBtn">Yes! 💖</button>
+                    <button class="btn-no" id="noBtn">Maybe... 🤔</button>
+                </div>
 
-<!-- Surprise Section -->
-<section id="surpriseBox" class="surprise section-step hidden" data-step="4">
-  <div class="surprise-card glass-card">
-    <h2 class="surprise-title">🎁 Special Surprise 🎁</h2>
-    <p class="surprise-text">
-      Promise karta hu vandana, har din tumhe utna hi special feel karunga jitna aaj.
-      <br><br>
-      <span class="highlight">I Love You mera baccha ❤️</span>
-    </p>
-    <div class="love-badge">Forever Yours 💑</div>
-    <div class="surprise-grid">
-      <div class="surprise-item">🌹 Roses for you</div>
-      <div class="surprise-item">💝 My heart is yours</div>
-      <div class="surprise-item">✨ You light up my life</div>
-      <div class="surprise-item">💕 Forever together</div>
-    </div>
-  </div>
-</section>
+                <div class="final-message" id="finalMessage">
+                    <h3>I knew you'd say yes! 🎉</h3>
+                    <p>I love you so much! Tumhare saath zindagi bhar ke liye. Forever and always. 💕✨</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Footer -->
-<footer>
-  <div class="footer-content">
-    <p>Made with ❤️ specially for vandana</p>
-    <div class="footer-hearts">💝 💖 💗 💓 💞</div>
-    <p class="footer-quote">"Babu, you're my forever surprise"</p>
-  </div>
-</footer>
-
-<audio id="bgMusic" loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
-</audio>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
