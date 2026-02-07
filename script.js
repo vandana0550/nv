@@ -78,23 +78,41 @@ document.getElementById('yesBtn').addEventListener('click', () => {
     createConfetti();
 });
 
-document.getElementById('noBtn').addEventListener('click', () => {
-    // Move the "No" button randomly on the screen (playful interaction)
-    const noBtn = document.getElementById('noBtn');
-    const maxX = window.innerWidth - noBtn.offsetWidth - 50;
-    const maxY = window.innerHeight - noBtn.offsetHeight - 50;
+const noBtn = document.getElementById('noBtn');
+
+function moveNoButton(e) {
+    if (e && e.type === 'touchstart') e.preventDefault();
     
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
+    // Ensure button acts elusive within safe bounds
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+    
+    const randomX = Math.max(10, Math.random() * maxX);
+    const randomY = Math.max(50, Math.random() * maxY);
     
     noBtn.style.position = 'fixed';
     noBtn.style.left = randomX + 'px';
     noBtn.style.top = randomY + 'px';
+    noBtn.style.zIndex = '1000'; // Make sure it stays on top
     
     // Change button text
-    const texts = ['Batau abhi 😒', 'Yes pe click karo chup chap 💔', 'Please? 🙏', 'Abhi bhi moka hai maan jao 💕'];
+    const texts = [
+        'Batau abhi 😒', 
+        'Yes pe click karo 💕', 
+        'Pakka? 🥺', 
+        'Dobara socho... 🤔', 
+        'Na ji Na 😤', 
+        'Try again 🤭',
+        'Aise kaise? 🤨'
+    ];
     noBtn.textContent = texts[Math.floor(Math.random() * texts.length)];
-});
+}
+
+// Add event listeners for both desktop (mouse) and mobile (touch)
+noBtn.addEventListener('click', moveNoButton);
+noBtn.addEventListener('mouseover', moveNoButton);
+noBtn.addEventListener('touchstart', moveNoButton);
+
 
 // ========== REALTIME COUNTDOWN TIMER ==========
 let countdownInterval;
@@ -113,49 +131,55 @@ function startCountdown() {
 }
 
 
+
 function updateCountdown() {
     const now = new Date();
-    const diff = now - RELATIONSHIP_START_DATE;
+    const start = RELATIONSHIP_START_DATE;
+
+    // Calculate basic differences
+    let years = now.getFullYear() - start.getFullYear();
+    let months = now.getMonth() - start.getMonth();
+    let days = now.getDate() - start.getDate();
+    let hours = now.getHours() - start.getHours();
+    let minutes = now.getMinutes() - start.getMinutes();
+    let seconds = now.getSeconds() - start.getSeconds();
     
-    // Calculate time components
-    const totalSeconds = Math.floor(diff / 1000);
-    const totalMinutes = Math.floor(totalSeconds / 60);
-    const totalHours = Math.floor(totalMinutes / 60);
-    const totalDays = Math.floor(totalHours / 24);
+    // Adjust negative values by borrowing from larger units
+    if (seconds < 0) {
+        seconds += 60;
+        minutes--;
+    }
     
-    // Calculate years and months
-    let years = now.getFullYear() - RELATIONSHIP_START_DATE.getFullYear();
-    let months = now.getMonth() - RELATIONSHIP_START_DATE.getMonth();
-    let days = now.getDate() - RELATIONSHIP_START_DATE.getDate();
+    if (minutes < 0) {
+        minutes += 60;
+        hours--;
+    }
     
-    // Adjust for negative days
+    if (hours < 0) {
+        hours += 24;
+        days--;
+    }
+    
     if (days < 0) {
-        months--;
-        // Get days in previous month
+        // Get days in the previous month to borrow
         const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
         days += prevMonth.getDate();
+        months--;
     }
     
-    // Adjust for negative months
     if (months < 0) {
-        years--;
         months += 12;
+        years--;
     }
     
-    // Calculate current time components
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
-    
-    // Update DOM elements with zero-padding for single digits
+    // Update DOM elements with zero-padding for all digits
     document.getElementById('years').textContent = years;
-    document.getElementById('months').textContent = months;
-    document.getElementById('days').textContent = days;
+    document.getElementById('months').textContent = String(months).padStart(2, '0');
+    document.getElementById('days').textContent = String(days).padStart(2, '0');
     document.getElementById('hours').textContent = String(hours).padStart(2, '0');
     document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
     document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
 }
-
 
 
 // ========== CONFETTI EFFECT ==========
@@ -198,4 +222,21 @@ document.head.appendChild(style);
 document.addEventListener('DOMContentLoaded', () => {
     createFloatingHearts();
     showCard(0); // Show hero section initially
+
+    const audio = document.getElementById('bgMusic');
+    if (audio) {
+        audio.volume = 0.5; // Set volume level (0.0 to 1.0)
+        
+        // 1. Try to play immediately (often blocked by browsers)
+        audio.play().catch(error => {
+            console.log("Autoplay blocked. Waiting for interaction.");
+        });
+
+        // 2. Ensure it plays on the very first click anywhere on the page
+        document.body.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
+    }
 });
